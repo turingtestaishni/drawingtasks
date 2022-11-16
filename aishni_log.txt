@@ -90,6 +90,33 @@ This is a good resource for branch and merging
 git checkout -b test_tasks_generator 
 Switched to a new branch 'test_tasks_generator'
 I will delete things in data/renders, data/libraires, data/summaries, removed *.csv and *.json
+git add data/ aishni_log.txt 
+used git push --set-upstream origin test_tasks_generator
+2.2.5
+added print stmt
+ran python generate_drawing_tasks.py --tasks_generator furniture_programs --num_tasks_per_condition all --train_ratio 0.8 --task_summaries
+
+Traceback (most recent call last):
+  File "generate_drawing_tasks.py", line 25, in <module>
+    import tasksgenerator.tasks_generator as tasks_generator
+  File "/Users/aishni/universe/nsym/drawingtasks/tasksgenerator/tasks_generator.py", line 12, in <module>
+    from dreamcoder.utilities import NEGATIVEINFINITY
+  File "/Users/aishni/universe/nsym/drawingtasks/dreamcoder/__init__.py", line 29, in <module>
+    from dreamcoder import dreamcoder
+  File "/Users/aishni/universe/nsym/drawingtasks/dreamcoder/dreamcoder.py", line 7, in <module>
+    from dreamcoder.recognition import *
+  File "/Users/aishni/universe/nsym/drawingtasks/dreamcoder/recognition.py", line 9, in <module>
+    import torch
+  File "/Users/aishni/universe/nsym/drawingtasks/drawingtasksenv/lib/python3.7/site-packages/torch/__init__.py", line 79, in <module>
+    from torch._C import *
+ImportError: dlopen(/Users/aishni/universe/nsym/drawingtasks/drawingtasksenv/lib/python3.7/site-packages/torch/_C.cpython-37m-darwin.so, 0x0009): Library not loaded: '/usr/local/opt/libomp/lib/libomp.dylib'
+  Referenced from: '/Users/aishni/universe/nsym/drawingtasks/drawingtasksenv/lib/python3.7/site-packages/torch/lib/libshm.dylib'
+  Reason: tried: '/usr/local/opt/libomp/lib/libomp.dylib' (no such file), '/usr/lib/libomp.dylib' (no such file)Library not loaded: '/usr/local/opt/libomp/lib/libomp.dylib'
+  Referenced from: '/Users/aishni/universe/nsym/drawingtasks/drawingtasksenv/lib/python3.7/site-packages/torch/lib/libtorch_python.dylib'
+  Reason: tried: '/usr/local/opt/libomp/lib/libomp.dylib' (no such file), '/usr/lib/libomp.dylib' (no such file)
+
+before trying to debug dreamcoder, checked in with author about implementing on ubuntu vs mac
+--- paused on 11/16/2022 12:04pm 
 
 
 
