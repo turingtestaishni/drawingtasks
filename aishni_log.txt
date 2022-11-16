@@ -1,0 +1,56 @@
+1. Setting up.
+1.1 `git submodule update --init --recursive` failed for `block_utils` because the repository does not exist ('404 not found')
+1.2 installation (avoiding anaconda); 
+1.2.1 installed python3.7.7 from here https://www.python.org/downloads/release/python-377/
+1.2.2 created a virtualenv with python3.7 -m venv drawingtasks
+1.2.3 You are using pip version 19.2.3, however version 22.3.1 is available.You should consider upgrading via the 'pip install --upgrade pip
+1.2.4 pip install -r requirements.txt
+1.2.4.1 pregrex requires python 3.9 pregex==0.3.2 removed this line
+1.2.4.2 The conflict is caused by: The user requested urllib3==1.26.6; botocore 1.20.103 depends on urllib3<1.27 and >=1.25.4 requests 2.22.0 depends on urllib3!=1.25.0, !=1.25.1, <1.26 and >=1.21.1; so i will change version to urllib3==1.25.11
+1.2.4.3 there is a problem with pycairo
+Collecting zipp==3.0.0
+  Using cached zipp-3.0.0-py3-none-any.whl (4.8 kB)
+Requirement already satisfied: setuptools>=39.2.0 in ./drawingtasksenv/lib/python3.7/site-packages (from cairocffi==1.0.2->-r requirements.txt (line 9)) (41.2.0)
+Building wheels for collected packages: pycairo
+  Building wheel for pycairo (pyproject.toml) ... error
+  error: subprocess-exited-with-error
+  
+  × Building wheel for pycairo (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [12 lines of output]
+      running bdist_wheel
+      running build
+      running build_py
+      creating build
+      creating build/lib.macosx-10.9-x86_64-cpython-37
+      creating build/lib.macosx-10.9-x86_64-cpython-37/cairo
+      copying cairo/__init__.py -> build/lib.macosx-10.9-x86_64-cpython-37/cairo
+      copying cairo/__init__.pyi -> build/lib.macosx-10.9-x86_64-cpython-37/cairo
+      copying cairo/py.typed -> build/lib.macosx-10.9-x86_64-cpython-37/cairo
+      running build_ext
+      'pkg-config' not found.
+      Command ['pkg-config', '--print-errors', '--exists', 'cairo >= 1.15.10']
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for pycairo
+Failed to build pycairo
+ERROR: Could not build wheels for pycairo, which is required to install pyproject.toml-based projects
+so i looked up online here: https://github.com/googlefonts/gftools/issues/121 alexeiva commented https://github.com/pygobject/pycairo/issues/39#issuecomment-454689537 which installed brew, export PATH=/opt/homebrew/bin:$PATH, then brew install pkg-config, brew install cairoi, pip3 -r install requirements.txt now passes previous error; successfully installed all requirements
+1.2.5 set up step 3 Install the NLTK word tokenize package. python -m nltk.downloader 'punkt';
+1.2.5.1 there was an error; [nltk_data] Error loading punkt: <urlopen error [SSL:
+[nltk_data]     CERTIFICATE_VERIFY_FAILED] certificate verify failed:
+[nltk_data]     unable to get local issuer certificate (_ssl.c:1076)>
+False;
+I fixed it using import nltk
+import ssl
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
+nltk.download(); this opened a window where I selected models > punkt > download; this worked;
+  
