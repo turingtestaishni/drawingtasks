@@ -5,9 +5,12 @@
 1.2.2 created a virtualenv with python3.7 -m venv drawingtasks
 1.2.3 You are using pip version 19.2.3, however version 22.3.1 is available.You should consider upgrading via the 'pip install --upgrade pip
 1.2.4 pip install -r requirements.txt
-1.2.4.1 pregrex requires python 3.9 pregex==0.3.2 removed this line
-1.2.4.2 The conflict is caused by: The user requested urllib3==1.26.6; botocore 1.20.103 depends on urllib3<1.27 and >=1.25.4 requests 2.22.0 depends on urllib3!=1.25.0, !=1.25.1, <1.26 and >=1.21.1; so i will change version to urllib3==1.25.11
-1.2.4.3 there is a problem with pycairo
+1.2.4.1 
+pregrex requires python 3.9 pregex==0.3.2 removed this line
+1.2.4.2 
+The conflict is caused by: The user requested urllib3==1.26.6; botocore 1.20.103 depends on urllib3<1.27 and >=1.25.4 requests 2.22.0 depends on urllib3!=1.25.0, !=1.25.1, <1.26 and >=1.21.1; so i will change version to urllib3==1.25.11
+1.2.4.3 
+there is a problem with pycairo
 Collecting zipp==3.0.0
   Using cached zipp-3.0.0-py3-none-any.whl (4.8 kB)
 Requirement already satisfied: setuptools>=39.2.0 in ./drawingtasksenv/lib/python3.7/site-packages (from cairocffi==1.0.2->-r requirements.txt (line 9)) (41.2.0)
@@ -38,7 +41,8 @@ Failed to build pycairo
 ERROR: Could not build wheels for pycairo, which is required to install pyproject.toml-based projects
 so i looked up online here: https://github.com/googlefonts/gftools/issues/121 alexeiva commented https://github.com/pygobject/pycairo/issues/39#issuecomment-454689537 which installed brew, export PATH=/opt/homebrew/bin:$PATH, then brew install pkg-config, brew install cairoi, pip3 -r install requirements.txt now passes previous error; successfully installed all requirements
 1.2.5 set up step 3 Install the NLTK word tokenize package. python -m nltk.downloader 'punkt';
-1.2.5.1 there was an error; [nltk_data] Error loading punkt: <urlopen error [SSL:
+1.2.5.1 
+there was an error; [nltk_data] Error loading punkt: <urlopen error [SSL:
 [nltk_data]     CERTIFICATE_VERIFY_FAILED] certificate verify failed:
 [nltk_data]     unable to get local issuer certificate (_ssl.c:1076)>
 False;
@@ -52,5 +56,34 @@ except AttributeError:
 else:
     ssl._create_default_https_context = _create_unverified_https_context
 
-nltk.download(); this opened a window where I selected models > punkt > download; this worked;
-  
+nltk.download(); this opened a window where I selected models > punkt > download; this worked; but it has stored it in aishni/ i am tempted to move this inside the project folder and set a path, will deal with this later ****;
+
+2. Quickstart: generating the CogSci 2022 dataset.
+2.1 
+I checked dir data/renders, data/libraires, data/summaries and ls *.csv: all seem to contain data already; perhaps I don't need to regenerate?
+2.1.1 
+for sanity check i could temporarily remove these files and see if I am able to regenerate them
+2.1.2
+Run each of the following lines to generate tasks from 4 domains: nuts_bolts, dials, wheels and furnitures.
+python generate_drawing_tasks.py --tasks_generator nuts_bolts_programs --num_tasks_per_condition all --train_ratio 0.8 --task_summaries;
+
+python generate_drawing_tasks.py --tasks_generator dials_programs --num_tasks_per_condition all --train_ratio 0.8 --task_summaries;
+
+python generate_drawing_tasks.py --tasks_generator wheels_programs --num_tasks_per_condition all --train_ratio 0.8 --task_summaries;
+
+python generate_drawing_tasks.py --tasks_generator furniture_programs --num_tasks_per_condition all --train_ratio 0.8 --task_summaries;
+
+So when I define my new domain, I would have to do something similar;
+
+2.2 Inspect generate_drawing_tasks.py
+2.2.1
+Generate tasks and their corresponding programs
+There are 4 domains: nuts_bolts, dials, wheels and furnitures, and three hand-coded ones (I think they are s12_s13, s14_s15, and s16_s17)
+This file just reads cmd line args and calls respective functions in tasksgenerator/
+2.2.2 task_generator.py has one public function called random_sample_ratio_ordered_array, and three classes namely, TaskCurriculum, AbstractTasksGenerator, ManualCurriculumTasksGenerator(AbstractTasksGenerator), and DrawingTask(Task). The first thing that happens is generate_drawing_tasks makes a TasksGeneratorRegistry which uses a pypi package class-registry to manage.
+Then it passes this registry objec to generate_tasks_curriculum in AbstractTasksGenerator class.
+I am creating a new branch to print the outputs called "test_tasks_generator"
+
+
+
+

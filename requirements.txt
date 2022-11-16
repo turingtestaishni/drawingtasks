@@ -62,7 +62,6 @@ Pillow==6.0.0
 pluggy==0.13.1
 pox==0.2.5
 ppft==1.6.4.9
-pregex==0.3.2
 prometheus-client==0.7.1
 prompt-toolkit==3.0.3
 protobuf==3.8.0
@@ -100,7 +99,7 @@ tqdm==4.40.0
 traitlets==4.3.3
 typed-ast==1.4.3
 typing-extensions==3.10.0.0
-urllib3==1.26.6
+urllib3==1.25.11
 wcwidth==0.1.8
 webencodings==0.5.1
 widgetsnbextension==3.5.1
