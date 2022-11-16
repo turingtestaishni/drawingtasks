@@ -83,7 +83,13 @@ This file just reads cmd line args and calls respective functions in tasksgenera
 2.2.2 task_generator.py has one public function called random_sample_ratio_ordered_array, and three classes namely, TaskCurriculum, AbstractTasksGenerator, ManualCurriculumTasksGenerator(AbstractTasksGenerator), and DrawingTask(Task). The first thing that happens is generate_drawing_tasks makes a TasksGeneratorRegistry which uses a pypi package class-registry to manage.
 Then it passes this registry objec to generate_tasks_curriculum in AbstractTasksGenerator class.
 I am creating a new branch to print the outputs called "test_tasks_generator"
-
+2.2.3 git status showed dreamcoder had new commits and modified content, so i did git submodule update --recursive dreamcoder
+Submodule path 'dreamcoder': checked out 'aec40a9a224785aac899afbfc4399ff52c3cfdfe'.
+2.2.4 
+This is a good resource for branch and merging
+git checkout -b test_tasks_generator 
+Switched to a new branch 'test_tasks_generator'
+I will delete things in data/renders, data/libraires, data/summaries, removed *.csv and *.json
 
 
 
