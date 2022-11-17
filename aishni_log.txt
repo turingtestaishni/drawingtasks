@@ -117,6 +117,10 @@ ImportError: dlopen(/Users/aishni/universe/nsym/drawingtasks/drawingtasksenv/lib
 
 before trying to debug dreamcoder, checked in with author about implementing on ubuntu vs mac
 --- paused on 11/16/2022 12:04pm 
+--- resume on 11/17/2022 12:57 am
+tried brew install libomp but didn't work (see https://discuss.pytorch.org/t/importerror-on-mac-with-pytorch-1-1/44305/3)
+
+--- paused on 11/17/2022 1:27 am
 
 
 
