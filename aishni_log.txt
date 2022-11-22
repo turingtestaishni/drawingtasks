@@ -121,6 +121,10 @@ before trying to debug dreamcoder, checked in with author about implementing on 
 tried brew install libomp but didn't work (see https://discuss.pytorch.org/t/importerror-on-mac-with-pytorch-1-1/44305/3)
 
 --- paused on 11/17/2022 1:27 am
-
+--- resumed on 11/19/2022 5pm
+Installed utm with latest ubuntu
+Cloned repo there
+Used latest numpy, pandas, scikit, torch, torchvision, toml versions.
+Pycairo issue recurred, installed wi
 
 
